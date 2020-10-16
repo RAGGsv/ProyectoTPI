@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="es-sv"> 
+
+  <head>
+    <title>DTodo Online</title>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Importamos JQuery 3.3.1-->
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!--Importamos Boostrap 4.1.3-->
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <!--Estilos generales de la pagina-->
+    <link rel="stylesheet" href="css/estilo1.css">
+    <!--Colores principales de la pagina-->
+    <link rel="stylesheet" href="css/colores.css">
+    <!--Importamos estilos del carousel-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <!--Script del carousel-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+</head>
+
+  <body>
+
+    <!-- Navegacion-->
+    <div class="fixed-top">
+
+        <!-- Carrito y Login--> 
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+            <div class="container">
+              <div class="collapse navbar-collapse justify-content-end" id="navbarContainer">
+                
+                <!--Los posiciona en la parte derecha del nav-->
+                <ul class="nav navbar-nav float-right nav-top">
+                  
+                    <!--Carrito-->
+                  <li >
+                    <a id="cart-link" href="#" class="trsn nav-link" title="Ver/Editar Carro">
+                      <i class="fas fa-shopping-cart"></i>
+                      <span id="nav-bar-cart"><span class="cart-size">0</span> Producto(s) | $0</span>
+                    </a>
+                  </li>
+    
+                  <!--Login-->
+                  <li >
+                    <a href="#" id="login-link" class="trsn nav-link" title="Ingresar aBootstrap">
+                      <i class="fas fa-user"></i>
+                      <span class="customer-name">
+                        Ingresar
+                      </span>
+                    </a>
+                  </li>
+                  
+                  
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+
+      <!-- Logo y busqueda-->  
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+
+            <!--Logo-->
+          <a href="#" title="DTodo" class="navbar-brand">
+            
+            <img src="img/logo Dtodo.png" class="store-image" alt="De Todo Logo" />
+            
+          </a>
+
+          <!--Boton que sera visible en dispositivos mobiles-->
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarContainer" aria-controls="navbarContainer" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!--Lista desplegable del boton para dispositivos mobiles-->
+          <div class="collapse navbar-collapse justify-content-end" id="navbarContainer">
+
+            <form id="search_mini_form" class="d-lg-none d-md-block" method="get" action="/mx/search">
+              <div class="input-group mb-3">
+                <input type="text" value="" name="q" class="form-control form-control-sm" onFocus="javascript:this.value=''" placeholder="Buscar productos" />
+                <button type="submit" class="btn btn-outline-secondary"><i class="fas fa-search"></i></button>
+              </div>
+            </form>
+
+            <ul id="navbarContainerMobile" class="navbar-nav d-lg-none">
+              
+                <li class="nav-item  ">
+                    <a href="/mx/"  title="Inicio" class="level-1 trsn nav-link" >Inicio</a>
+                
+                </li>
+
+              
+                <li class="nav-item  ">
+                    <a href="/mx/techno"  title="Techno" class="level-1 trsn nav-link" >Techno</a>
+  
+                </li>
+
+              
+                <li class="nav-item  ">
+                    <a href="/mx/about-us"  title="About Us" class="level-1 trsn nav-link" >About Us</a>
+  
+                </li>
+
+              
+                <li class="nav-item  ">
+                    <a href="/mx/blog"  title="Blog" class="level-1 trsn nav-link" >Blog</a>
+  
+                </li>
+
+              
+                <li class="nav-item  ">
+                    <a href="/mx/contact"  title="Contact" class="level-1 trsn nav-link" >Contact</a>
+  
+                </li>
+
+              
+            </ul> 
+
+            <form id="search_mini_form" class="navbar-form float-right form-inline d-none d-lg-flex" method="get" action="/mx/search">
+              <input type="text" value="" name="q" class="form-control form-control-sm" onFocus="javascript:this.value=''" placeholder="Buscar productos" />
+              <button type="submit" class="btn btn-secondary btn-sm"><i class="fas fa-search"></i></button>
+            </form>
+
+            <ul class="nav navbar-nav float-right nav-top">
+              <li >
+                    <svg width="5em" height="2em" viewBox="0 0 16 16" class="bi bi-truck" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                      </svg>
+                  <span id="nav-bar-cart"> Envios en todo el pais</span>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </nav>
+
+
+      <!-- Menu de navegacion entre paginas-->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-none d-lg-block">
+        <div class="container">
+          <div class="collapse navbar-collapse" id="navbarsContainer-2">
+
+            <!--Lista de elementos del menu-->
+            <ul class="navbar-nav mr-auto">
+              
+              <!--Menu categorías-->
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle trsn nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="nav-link">
+                  <span>Categorías--</span>
+                </a>
+                <ul class="dropdown-menu">
+              
+                  <li><a href="#" class="trsn nav-link" title="Moda">Moda</a></li>
+                  
+                  <li><a href="#" class="trsn nav-link" title="Muebles">Muebles</a></li>
+                  
+                  <li><a href="#" class="trsn nav-link" title="Hogar">Hogar</a></li>
+                  
+                  <li><a href="#" class="trsn nav-link" title="Linea blanca">Linea blanca</a></li>
+                  <li><a href="#" class="trsn nav-link" title="Electrodomesticos">Electrodomesticos</a></li>
+                  <li><a href="#" class="trsn nav-link" title="Tecnologia">Tecnologia</a></li>
+                  <li><a href="#" class="trsn nav-link" title="Belleza">Belleza</a></li>
+                  <li><a href="#" class="trsn nav-link" title="Juguetes">Juguetes</a></li>
+                </ul>
+              </li>
+
+              <li class="nav-item  ">
+                <a href="#"  title="Inicio" class="level-1 trsn nav-link" >Inicio</a>
+  
+              </li>
+
+              <!--Menu moda-->
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle trsn nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="nav-link">
+                  <span>Moda</span>
+                </a>
+                <ul class="dropdown-menu">
+              
+                  <li><a href="#" class="trsn nav-link" title="Dama">Dama</a></li>
+                  
+                  <li><a href="#" class="trsn nav-link" title="Caballero">Caballero</a></li>
+                  
+                  <li><a href="#" class="trsn nav-link" title="Niño">Niño</a></li>
+                  
+                  <li><a href="#" class="trsn nav-link" title="Niña">Niña</a></li>
+                </ul>
+              </li>
+
+              
+              <!--Menu muebles-->
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle trsn nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="nav-link">
+                  <span>Muebles</span>
+                </a>
+                <ul class="dropdown-menu">
+              
+                  <li><a href="#" class="trsn nav-link" title="Muebles de sala">Muebles de sala</a></li>
+                  
+                  <li><a href="#" class="trsn nav-link" title="Muebles de cocina">Muebles de cocina</a></li>
+                  
+                  <li><a href="#" class="trsn nav-link" title="Niño">Niño</a></li>
+                  
+                  <li><a href="#" class="trsn nav-link" title="Niña">Niña</a></li>
+                </ul>
+              </li>
+
+              
+              <li class="nav-item  ">
+                <a href="/mx/about-us"  title="About Us" class="level-1 trsn nav-link" >About Us</a>
+  
+              </li>
+
+              
+              <li class="nav-item  ">
+                <a href="/mx/blog"  title="Blog" class="level-1 trsn nav-link" >Blog</a>
+  
+              </li>
+
+              
+              <li class="nav-item  ">
+                <a href="/mx/contact"  title="Contact" class="level-1 trsn nav-link" >Contact</a>
+                
+              </li>
+
+              
+            </ul>
+
+            <ul class="social navbar-toggler-right list-inline">
+              
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    </div>
+
+    <!-- Contenido Principal -->
+    
+
+    <!-- Home Slider -->
+<div id="carousel-home">
+  
+  
+
+  <!-- Carousel Empty -->
+  <div class="home_slider owl-carousel">
+
+    <div class="item" style="background-image:url('https://assets.jumpseller.com/store/bootstrap/themes/299408/slider-demo.jpg?1596826367')">
+      <a href="https://bootstrap.jumpseller.com/mx/admin/themes/options/299408">
+      <div class="layer"></div>
+      <div class="carousel-info">
+        <div class="carousel-info-inner">
+          <h2>Bienvenido a D-Todo Almacenes</h2>
+          <a href="https://bootstrap.jumpseller.com/mx/admin/themes/options/299408" class="btn btn-primary" title="Agrega tus propios Sliders">Agrega tus propios Sliders</a>
+        </div>
+      </div>
+      
+      </a>
+    </div>
+
+    <div class="item" style="background-image:url('https://assets.jumpseller.com/store/bootstrap/themes/299408/slider-demo-2.jpg?1596826367')">
+      <a href="https://bootstrap.jumpseller.com/mx/admin/themes/options/299408">
+      <div class="layer"></div>
+      <div class="carousel-info">
+        <div class="carousel-info-inner">
+          <h2>Bienvenido a D-Todo Almacenes</h2>
+          <a href="https://bootstrap.jumpseller.com/mx/admin/themes/options/299408" class="btn btn-primary" title="Agrega tus propios Sliders">Agrega tus propios Sliders</a>
+        </div>
+      </div>
+      
+      </a>
+    </div>
+
+  </div>
+	
+  
+</div>
+
+<script>
+  
+  $('#carousel-home .item').addClass('item-background');
+  
+  $('.home_slider').owlCarousel({
+    items:1,
+    
+		loop:true,
+		dots: false,
+		margin:0,
+		nav:true,
+		autoplay: true,
+		autoplayTimeout: 3000,
+		autoplayHoverPause:true,
+		navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"]
+	})
+</script>
+
+
+<!-- Page Content -->
+<div class="container">
+  
+
+  
+  <!-- Products Section -->
+  <div class="row">
+    <div class="col-12">
+      <h2 class="page-header">Productos Destacados</h2>
+    </div>
+
+    
+    <!-- Featured Products -->
+    
+    <div class="col-md-3 col-6 product-block">
+      
+<a href="/mx/wacom-tablet"><img class="img-fluid img-portfolio img-hover mb-3" src="https://cdnx.jumpseller.com/bootstrap/image/429444/resize/255/320?1439529365" srcset="https://cdnx.jumpseller.com/bootstrap/image/429444/resize/255/320?1439529365 1x, https://cdnx.jumpseller.com/bootstrap/image/429444/resize/510/640?1439529365 2x" alt="Wacom Bamboo Tablet" /></a>
+
+<div class="caption">
+  <h3><a href="/mx/wacom-tablet">Wacom Bamboo Tablet</a></h3>
+  <div class="price-mob">
+    
+    
+    $100.000
+    
+    
+  </div>
+  <div class="clearfix"></div>
+
+  
+  
+</div>
+
+    </div>
+  
+    <div class="col-md-3 col-6 product-block">
+      
+<a href="/mx/smartphone-mtk6572"><img class="img-fluid img-portfolio img-hover mb-3" src="https://cdnx.jumpseller.com/bootstrap/image/429445/resize/255/320?1439529548" srcset="https://cdnx.jumpseller.com/bootstrap/image/429445/resize/255/320?1439529548 1x, https://cdnx.jumpseller.com/bootstrap/image/429445/resize/510/640?1439529548 2x" alt="Smartphone MTK6572 " /></a>
+
+<div class="caption">
+  <h3><a href="/mx/smartphone-mtk6572">Smartphone MTK6572 </a></h3>
+  <div class="price-mob">
+    
+    
+    $500.000
+    
+    
+  </div>
+  <div class="clearfix"></div>
+
+  
+  
+</div>
+
+    </div>
+  
+    <div class="col-md-3 col-6 product-block">
+      
+<a href="/mx/imac-desktop-computer"><img class="img-fluid img-portfolio img-hover mb-3" src="https://cdnx.jumpseller.com/bootstrap/image/429446/resize/255/320?1439529839" srcset="https://cdnx.jumpseller.com/bootstrap/image/429446/resize/255/320?1439529839 1x, https://cdnx.jumpseller.com/bootstrap/image/429446/resize/510/640?1439529839 2x" alt="iMac Desktop Computer" /></a>
+
+<div class="caption">
+  <h3><a href="/mx/imac-desktop-computer">iMac Desktop Computer</a></h3>
+  <div class="price-mob">
+    
+    
+    $1.200.000
+    
+    
+  </div>
+  <div class="clearfix"></div>
+
+  
+  
+</div>
+
+    </div>
+  
+    <div class="col-md-3 col-6 product-block">
+      
+<a href="/mx/ps4"><img class="img-fluid img-portfolio img-hover mb-3" src="https://cdnx.jumpseller.com/bootstrap/image/429450/resize/255/320?1439530709" srcset="https://cdnx.jumpseller.com/bootstrap/image/429450/resize/255/320?1439530709 1x, https://cdnx.jumpseller.com/bootstrap/image/429450/resize/510/640?1439530709 2x" alt="DualShock Controller for PlayStation 4" /></a>
+
+<div class="caption">
+  <h3><a href="/mx/ps4">DualShock Controller for PlayStation 4</a></h3>
+  <div class="price-mob">
+    
+    
+    $20.000
+    
+    
+  </div>
+  <div class="clearfix"></div>
+
+  
+  
+</div>
+
+    </div>
+  
+  
+  </div><!-- /.row -->
+  
+
+  
+  <!-- Products Section -->
+  <div class="row">
+    <div class="col-12">
+      <h2 class="page-header">Últimos Productos</h2>
+    </div>
+
+    
+    <!-- Featured Products -->
+    
+    <div class="col-md-3 col-6 product-block">
+      
+<a href="/mx/camara-nikon-reflex-d7200-lente-18-140"><img class="img-fluid img-portfolio img-hover mb-3" src="https://cdnx.jumpseller.com/bootstrap/image/6221140/resize/255/320?1564681025" srcset="https://cdnx.jumpseller.com/bootstrap/image/6221140/resize/255/320?1564681025 1x, https://cdnx.jumpseller.com/bootstrap/image/6221140/resize/510/640?1564681025 2x" alt="Camara Nikon Reflex D7200 + Lente 18-140" /></a>
+
+<div class="caption">
+  <h3><a href="/mx/camara-nikon-reflex-d7200-lente-18-140">Camara Nikon Reflex D7200 + Lente 18-140</a></h3>
+  <div class="price-mob">
+    
+    
+    $1.290.000
+    
+    
+  </div>
+  <div class="clearfix"></div>
+
+  
+  
+</div>
+
+    </div>
+  
+    <div class="col-md-3 col-6 product-block">
+      
+<a href="/mx/notebook-asus-x507ua-intel-core-i3-4gb-ram"><img class="img-fluid img-portfolio img-hover mb-3" src="https://cdnx.jumpseller.com/bootstrap/image/6221126/resize/255/320?1564681003" srcset="https://cdnx.jumpseller.com/bootstrap/image/6221126/resize/255/320?1564681003 1x, https://cdnx.jumpseller.com/bootstrap/image/6221126/resize/510/640?1564681003 2x" alt="Notebook Asus X507UA Intel Core i3 4GB RAM " /></a>
+
+<div class="caption">
+  <h3><a href="/mx/notebook-asus-x507ua-intel-core-i3-4gb-ram">Notebook Asus X507UA Intel Core i3 4GB RAM </a></h3>
+  <div class="price-mob">
+    
+    
+    $900.000
+    
+    
+  </div>
+  <div class="clearfix"></div>
+
+  
+  
+</div>
+
+    </div>
+  
+    <div class="col-md-3 col-6 product-block">
+      
+<a href="/mx/dualshock-controller-for-playstation-4"><img class="img-fluid img-portfolio img-hover mb-3" src="https://cdnx.jumpseller.com/bootstrap/image/429451/resize/255/320?1439530880" srcset="https://cdnx.jumpseller.com/bootstrap/image/429451/resize/255/320?1439530880 1x, https://cdnx.jumpseller.com/bootstrap/image/429451/resize/510/640?1439530880 2x" alt="Dualshock Controller for PlayStation 4" /></a>
+
+<div class="caption">
+  <h3><a href="/mx/dualshock-controller-for-playstation-4">Dualshock Controller for PlayStation 4</a></h3>
+  <div class="price-mob">
+    
+    <span class="product-block-not-available">Agotado</span>
+    
+  </div>
+  <div class="clearfix"></div>
+
+  
+  
+</div>
+
+    </div>
+  
+    <div class="col-md-3 col-6 product-block">
+      
+<a href="/mx/keyboarded-tablet"><img class="img-fluid img-portfolio img-hover mb-3" src="https://cdnx.jumpseller.com/bootstrap/image/429448/resize/255/320?1439530289" srcset="https://cdnx.jumpseller.com/bootstrap/image/429448/resize/255/320?1439530289 1x, https://cdnx.jumpseller.com/bootstrap/image/429448/resize/510/640?1439530289 2x" alt="Asus Transformer Pad Tablet" /></a>
+
+<div class="caption">
+  <h3><a href="/mx/keyboarded-tablet">Asus Transformer Pad Tablet</a></h3>
+  <div class="price-mob">
+    
+    
+    $200.000
+    
+    
+  </div>
+  <div class="clearfix"></div>
+
+  
+  
+</div>
+
+    </div>
+  
+    <div class="col-md-3 col-6 product-block">
+      
+<a href="/mx/ps4"><img class="img-fluid img-portfolio img-hover mb-3" src="https://cdnx.jumpseller.com/bootstrap/image/429450/resize/255/320?1439530709" srcset="https://cdnx.jumpseller.com/bootstrap/image/429450/resize/255/320?1439530709 1x, https://cdnx.jumpseller.com/bootstrap/image/429450/resize/510/640?1439530709 2x" alt="DualShock Controller for PlayStation 4" /></a>
+
+<div class="caption">
+  <h3><a href="/mx/ps4">DualShock Controller for PlayStation 4</a></h3>
+  <div class="price-mob">
+    
+    
+    $20.000
+    
+    
+  </div>
+  <div class="clearfix"></div>
+
+  
+  
+</div>
+
+    </div>
+  
+    <div class="col-md-3 col-6 product-block">
+      
+<a href="/mx/imac-desktop-computer"><img class="img-fluid img-portfolio img-hover mb-3" src="https://cdnx.jumpseller.com/bootstrap/image/429446/resize/255/320?1439529839" srcset="https://cdnx.jumpseller.com/bootstrap/image/429446/resize/255/320?1439529839 1x, https://cdnx.jumpseller.com/bootstrap/image/429446/resize/510/640?1439529839 2x" alt="iMac Desktop Computer" /></a>
+
+<div class="caption">
+  <h3><a href="/mx/imac-desktop-computer">iMac Desktop Computer</a></h3>
+  <div class="price-mob">
+    
+    
+    $1.200.000
+    
+    
+  </div>
+  <div class="clearfix"></div>
+
+  
+  
+</div>
+
+    </div>
+  
+    <div class="col-md-3 col-6 product-block">
+      
+<a href="/mx/smartphone-mtk6572"><img class="img-fluid img-portfolio img-hover mb-3" src="https://cdnx.jumpseller.com/bootstrap/image/429445/resize/255/320?1439529548" srcset="https://cdnx.jumpseller.com/bootstrap/image/429445/resize/255/320?1439529548 1x, https://cdnx.jumpseller.com/bootstrap/image/429445/resize/510/640?1439529548 2x" alt="Smartphone MTK6572 " /></a>
+
+<div class="caption">
+  <h3><a href="/mx/smartphone-mtk6572">Smartphone MTK6572 </a></h3>
+  <div class="price-mob">
+    
+    
+    $500.000
+    
+    
+  </div>
+  <div class="clearfix"></div>
+
+  
+  
+</div>
+
+    </div>
+  
+    <div class="col-md-3 col-6 product-block">
+      
+<a href="/mx/wacom-tablet"><img class="img-fluid img-portfolio img-hover mb-3" src="https://cdnx.jumpseller.com/bootstrap/image/429444/resize/255/320?1439529365" srcset="https://cdnx.jumpseller.com/bootstrap/image/429444/resize/255/320?1439529365 1x, https://cdnx.jumpseller.com/bootstrap/image/429444/resize/510/640?1439529365 2x" alt="Wacom Bamboo Tablet" /></a>
+
+<div class="caption">
+  <h3><a href="/mx/wacom-tablet">Wacom Bamboo Tablet</a></h3>
+  <div class="price-mob">
+    
+    
+    $100.000
+    
+    
+  </div>
+  <div class="clearfix"></div>
+
+  
+  
+</div>
+
+    </div>
+  
+  
+  </div><!-- /.row -->
+
+  
+</div>
+
+    <hr >
+
+    <!-- Footer -->
+    <div class="container">
+      <footer>
+        <div class="row">
+          <div class="footer-left row col-md-12 col-lg-9">
+            <div class="col-md-3 links wrapper">
+              <header> <strong>Servicio al cliente</strong> </header>
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <th scope="row"><a href="#">FAQ</a></th>
+                  </tr>
+                  <tr>
+                    <th scope="row"><a href="">Terminos y condiciones</a></th>
+                  </tr>
+                  <tr>
+                    <th scope="row"><a href="">Garantias</a></th>
+                  </tr>
+                  <tr>
+                    <th scope="row"><a href=""> Contactanos</a></th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="col-md-3 links wrapper">
+              <header> <strong> Cuenta</strong></header>
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <th scope="row"><a href="#">Informacion Personal</a></th>
+                  </tr>
+                  <tr>
+                    <th scope="row"><a href="">Ordenes</a></th>
+                  </tr>
+                  <tr>
+                    <th scope="row"><a href="">Lista de deseos</a></th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+          </div>
+
+          <div class="col-sm">
+            
+          </div>
+
+          <div class="footer-right col-md-12 col-lg-3">
+            <header>
+              <img src="img/logo Dtodo.png" class="store-image" alt="">
+              <p> <strong>Almacenes</strong>  </p>
+            </header>
+            <article>
+              <p>Edificio D-Todo</p>
+              <p>San Salvador, San Salvador</p>
+              <p>2252-2795</p>
+              <p>dtodo@grupdtodo.com</p>
+            </article>
+          </div>
+      </footer>
+
+    </div>
+
+    <!-- /.container -->
+
+    <!-- Css -->
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="//stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <!-- Script to Activate Tooltips -->
+    <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+        $('.carousel').carousel()
+      })
+    </script>
+
+    <script src="//cdn.jsdelivr.net/bootstrap.filestyle/1.1.0/js/bootstrap-filestyle.min.js"></script>
+    <script type="text/javascript" src="https://assets.jumpseller.com/store/bootstrap/themes/299408/main.js?1596826367"></script>
+
+    
+
+    
+
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script type="text/javascript">
+  WebFont.load({
+    google: {
+      families: ["Open Sans:300,400,500,600,700,800", "Open Sans:300,400,500,600,700,800", "Open Sans:300,400,500,600,700,800"]
+    }
+  });
+</script>
+
+<style type="text/css">
+  body {
+     font-family: 'Open Sans' !important; 
+  }
+
+  .page-header, h2 {
+   font-family: 'Open Sans' !important; 
+  }
+
+  .navbar-brand, .text-logo {
+   font-family: 'Open Sans' !important;  
+  }
+
+   p, .caption h4, label, table, .panel, #contactpage > h2.success, #contactpage h2.error  {
+    font-size: 14px !important;
+  }
+
+  h2 {
+    font-size: 30px !important;
+  }
+  .navbar-brand, .text-logo {
+    font-size: 18px !important;
+  }
+  .navbar-left a {
+    font-size: 14px !important;
+  }
+
+</style>
+
+
+    
+  </body>
+
+</html>
